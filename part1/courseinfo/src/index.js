@@ -9,14 +9,14 @@ const Content = (content) => {
   console.log(content)
   return (
     <div>
-      <Parts name={content.part1} exercises={content.exercises} />
-      <Parts name={content.part2} exercises={content.exercises2} />
-      <Parts name={content.part3} exercises={content.exercises3} />
+      <Parts name={content.parts[0].name} exercises={content.parts[0].exercises} />
+      <Parts name={content.parts[1].name} exercises={content.parts[1].exercises} />
+      <Parts name={content.parts[2].name} exercises={content.parts[2].exercises} />
     </div>
   )
  
 }
-const Total = ({total}) => <p>{total}</p>
+const Total = (props) => <p>Number of exercises {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}</p>
 
 /*
 * The same as
@@ -43,13 +43,9 @@ const App = () => {
 
   return (
     <div>
-      <Header course= {course} />
-      <Content 
-      part1 = {parts[0].name} exercises = {parts[0].exercises}
-      part2 = {parts[1].name} exercises2 = {parts[1].exercises}
-      part3 = {parts[2].name} exercises3 = {parts[2].exercises}
-      />
-      <Total total = {'Number of exercises ' + (parts[0].exercises + parts[1].exercises + parts[2].exercises)} />
+      <Header course={course} />
+      <Content parts={parts} />
+      <Total parts={parts} />
     </div>
   )
 }
